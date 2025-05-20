@@ -1,8 +1,8 @@
-import app from './server';
+import app from './app';
 import "dotenv/config";
-import { connectDB } from './config/dbConfig';
+import connectDB from './config/dbConfig';
 
-const PORT = process.env.PORT;
+const PORT: number = process.env.PORT ? parseInt(process.env.PORT) : 3001;
 
 const serverOnline = async (): Promise<void> => {
     try {
@@ -10,8 +10,8 @@ const serverOnline = async (): Promise<void> => {
         console.log('Server online');
         app.listen(PORT, (): void => {
         console.log(`Server is running on port ${PORT}`);
-    });
-} catch (error) {
+        });
+    } catch (error) {
     console.error(error);
 }
 };
